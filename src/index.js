@@ -1,11 +1,14 @@
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
+const { serve, setup } = require('swagger-ui-express');
+const swaggerFile = require('./swagger.json');
 
 const PORT = 3333;
 const app = express();
 const customers = [];
 
 app.use(express.json());
+app.use('/swagger', serve, setup(swaggerFile));
 
 function verifyAccount(request, response, next) {
   const { cpf } = request.headers;
@@ -48,6 +51,28 @@ app.post('/account', (request, response) => {
   });
 
   return response.status(201).send();
+});
+
+app.put('/account', verifyAccount, (request, response) => {
+  const { name } = request.body;
+  const { customer } = request;
+
+  customer.name = name;
+  return response.status(200).send();
+});
+
+app.get('/account', verifyAccount, (request, response) => {
+  const { customer } = request;
+
+  return response.json(customer);
+});
+
+app.delete('/account', verifyAccount, (request, response) => {
+  const { customer } = request;
+
+  customers.splice(customer, 1);
+
+  return response.status(200).json(customers);
 });
 
 app.post('/deposit', verifyAccount, (request, response) => {
@@ -106,28 +131,6 @@ app.get('/statement/date', verifyAccount, (request, response) => {
   return response.json(statement);
 });
 
-app.put('/account', verifyAccount, (request, response) => {
-  const { name } = request.body;
-  const { customer } = request;
-
-  customer.name = name;
-  return response.status(201).send();
-});
-
-app.get('/account', verifyAccount, (request, response) => {
-  const { customer } = request;
-
-  return response.json(customer);
-});
-
-app.delete('/account', verifyAccount, (request, response) => {
-  const { customer } = request;
-
-  customers.splice(customer, 1);
-
-  return response.status(200).json(customers);
-});
-
 app.get('/balance', verifyAccount, (request, response) => {
   const { customer } = request;
 
@@ -138,6 +141,6 @@ app.get('/balance', verifyAccount, (request, response) => {
 
 app.listen(PORT, () => {
   console.log(
-    `👀 Server localhost:${PORT} is being watched - 'Quis custodiet ipsos custodes? 🤔'!`,
+    `👀 Server http://localhost:${PORT}/swagger is being watched - 'Quis custodiet ipsos custodes? 🤔'!`,
   );
 });

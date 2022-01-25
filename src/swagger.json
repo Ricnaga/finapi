@@ -1,0 +1,295 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Nodejs - FinAPI | Documentation",
+    "description": "API Documentation",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/account": {
+      "post": {
+        "tags": ["Account"],
+        "summary": "Create account",
+        "description": "Create a new account",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "contoso name",
+                  "cpf": "33355577788"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Account created"
+          },
+          "400": {
+            "description": "Customer already exists!"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Account"],
+        "summary": "Update account",
+        "description": "Update an existent account",
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "header",
+            "description": "cpf that need to be list",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "contoso name"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Account updated"
+          },
+          "400": {
+            "description": "Customer not found"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Account"],
+        "summary": "list account",
+        "description": "show an existent account",
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "header",
+            "description": "cpf that need to be list",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account updated"
+          },
+          "400": {
+            "description": "Customer not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Account"],
+        "summary": "delete account",
+        "description": "delete an existent account",
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "header",
+            "description": "cpf that need to be list",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account updated"
+          },
+          "400": {
+            "description": "Customer not found"
+          }
+        }
+      }
+    },
+    "/deposit": {
+      "post": {
+        "tags": ["Deposit"],
+        "summary": "Deposit",
+        "description": "Do some deposits",
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "header",
+            "description": "cpf that need to be list",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "number"
+                  }
+                },
+                "example": {
+                  "description": "This is a deposit",
+                  "amount": "3500"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Please check the id again"
+          }
+        }
+      }
+    },
+    "/withdraw": {
+      "post": {
+        "tags": ["Withdraw"],
+        "summary": "Withdraw",
+        "description": "Do some withdraw",
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "header",
+            "description": "cpf that need to be list",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  }
+                },
+                "example": {
+                  "description": "This is a deposit",
+                  "amount": "3500"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Pro plan is already activated."
+          }
+        }
+      }
+    },
+    "/statement": {
+      "get": {
+        "tags": ["Statements"],
+        "summary": "Statements",
+        "description": "show some statements",
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "header",
+            "description": "cpf that need to be list",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/statement/date": {
+      "get": {
+        "tags": ["Statements"],
+        "summary": "Statements by Date",
+        "description": "List some statements by date",
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "header",
+            "description": "cpf that need to be list",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/balance": {
+      "get": {
+        "tags": ["Balance"],
+        "summary": "Get Balance",
+        "description": "Get balance from an users",
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "header",
+            "description": "cpf that need to be list",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  }
+}
