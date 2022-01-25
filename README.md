@@ -1,6 +1,8 @@
 
  <img src="https://img.shields.io/github/license/Ricnaga/finapi?style=for-the-badge"/>
 
+ <img src="cover.jpg" alt="Capa"/>
+
 # <div align="center"> FinAPI </div>
 
 #### <div align="right">- Projeto Finalizado <div>
@@ -8,10 +10,10 @@
 ### <div align="center"> Aplicação criada pela equipe Rocketseat abordando conceitos básicos sobre: </div>
 
 - Nodejs
-- CRUD: Create, read, update and delete com rotas
+- CRUD: Create, read, update and delete
 - Status code
 - Middleware
-- Recebendo dados das requisições
+- documentação de api
 
 
 ## <div align="center"> Sumário </div>
@@ -22,7 +24,7 @@
 <!--te-->
 
 ## <div align="center">Requisitos</div>
-Para executar a aplicação é necessário instalar algumas ferramentas tais como um editor de códigos para realizar compilação dos mesmos. Nesse projeto foi utilizado o [Visual Studio Code](https://code.visualstudio.com/), [NodeJS](https://nodejs.org/en/) para compilação do código, [Git Bash](https://gitforwindows.org/) para baixar o repositório e baixar todas as dependências necessárias. Para realizar testes foi utilizado o [Insomnia](https://insomnia.rest/download/)
+Para executar a aplicação é necessário instalar algumas ferramentas tais como um editor de códigos para realizar compilação dos mesmos. Nesse projeto foi utilizado o [Visual Studio Code](https://code.visualstudio.com/), [NodeJS](https://nodejs.org/en/) para compilação do código, [Git Bash](https://gitforwindows.org/) para baixar o repositório e baixar todas as dependências necessárias
 
 ```bash
 # Baixe o repositório.
@@ -41,49 +43,12 @@ $ code .
 $ yarn dev (caso não utilize o yarn: npm run dev)
 
 # A aplicação iniciará na porta 3333
-# utilize o insomnia para executar as rotas, no insomnia as rotas são:
-
-#POST:
--http://localhost:3333/account
-no body:{"cpf": "número do cpf", "name": "nome"}
-
--http://localhost:3333/deposit
-no body:{"amount":"titulo inserido", "description": "descrição do conteúdo"}
-no header:{"cpf": "número do cpf"}
-
--http://localhost:3333/withdraw
-no body:{"amount":"titulo inserido"}
-no header:{"cpf": "número do cpf"}
-
-#GET
--http://localhost:3333/statement
-no header:{"cpf": "número do cpf"}
-
--http://localhost:3333/statement/date
-na query:{"date": "aaaa-mm-dd"}
-no header:{"cpf": "número do cpf"}
-
--http://localhost:3333/account
-no header:{"cpf": "número do cpf"}
-
--http://localhost:3333/balance
-no header:{"cpf": "número do cpf"}
-
-#PUT
--http://localhost:3333/account
-no body:{"name": "nome"}
-no header:{"cpf": "número do cpf"}
-
-#DELETE
--http://localhost:3333/account
-no header:{"cpf": "número do cpf"}
+# Acesse no navegador o endereço http://localhost:3333/swagger
 ```
 
 ##  <div align="center">Tecnologias utilizadas</div>
-- [HTML](https://www.w3.org/HTML)
-- [CSS](https://www.w3.org/Style/CSS/)
 - [NodeJS](https://nodejs.org/en/)
-- [Git Bash](https://gitforwindows.org/)
+- [Swagger](https://swagger.io/)
 - [Express](https://expressjs.com/pt-br/starter/installing.html)
 
 
